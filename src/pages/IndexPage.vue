@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import HelloWorld from '../components/HelloWorld.vue'
+import PageHeader from '../components/PageHeader.vue'
+import CourseForm from '../components/CourseForm.vue'
 // useRoute, useHead, and HelloWorld are automatically imported. See vite.config.ts for details.
 const route = useRoute()
 
@@ -19,7 +20,6 @@ useHead({
   ],
 })
 
-const VERSION = import.meta.env.VITE_APP_VERSION
 const BUILD_DATE = import.meta.env.VITE_APP_BUILD_EPOCH
   ? new Date(Number(import.meta.env.VITE_APP_BUILD_EPOCH))
   : undefined
@@ -34,16 +34,10 @@ const thisYear = new Date().getFullYear()
     <div
       class="container relative max-w-2xl mx-auto bg-white shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5"
     >
-      <header class="px-4 pt-6 prose-sm md:px-6 md:prose">
-        <h1>Vite + Vue 3 + TypeScript + Tailwind + Playwright Starter Template v{{ VERSION }}</h1>
-        <p class="pb-4 text-xl leading-relaxed tracking-wide text-gray-700">
-          Opinionated, production ready template for Vite and Vue 3. MIT licensed,
-          <a href="https://github.com/Uninen/vite-ts-tailwind-starter">available on GitHub</a>.
-        </p>
-      </header>
+      <PageHeader page-title="Course Creation Form"/>
       <main>
         <div class="p-4 mx-auto prose md:px-6 prose-indigo sm:rounded-md">
-          <HelloWorld msg="Hello World Component" />
+          <CourseForm />
         </div>
       </main>
       <footer class="py-6 text-sm text-center text-gray-700">
