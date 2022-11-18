@@ -7,8 +7,9 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    copy: typeof import('./src/components/CourseForm copy.vue')['default']
+    Course: typeof import('./src/components/Course.vue')['default']
     CourseForm: typeof import('./src/components/CourseForm.vue')['default']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     PageHeader: typeof import('./src/components/PageHeader.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
