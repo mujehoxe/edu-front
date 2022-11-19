@@ -37,6 +37,7 @@ const thisYear = new Date().getFullYear()
       <PageHeader page-title="Course Creation Form"/>
       <main>
         <div class="p-4 mx-auto prose md:px-6 prose-indigo sm:rounded-md">
+          
           <CourseForm />
         </div>
       </main>

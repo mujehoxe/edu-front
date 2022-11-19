@@ -1,47 +1,45 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import axios from 'axios';
+import PrimaryButton from './PrimaryButton.vue';
 
 
 export default defineComponent({
-  emits: ['submit'],
-  data() {
-    return {
-      title: '',
-      description: '',
-      category: '',
-      level: '',
-      speciality: '',
-      file: new File([], ''),
-    }
-  },
-  methods: {
-    onFileChange(e: Event) {
-      const files = (e.target as HTMLInputElement).files || 
-        (e as DragEvent).dataTransfer?.files;
-
-      if (!files?.length)
-        return;
-      
-      this.file = files[0];
+    components: { PrimaryButton },
+    emits: ["submit"],
+    data() {
+        return {
+            title: "",
+            description: "",
+            category: "",
+            level: "",
+            speciality: "",
+            file: new File([], ""),
+        };
     },
-    clearFile(){
-      this.file = new File([], '');
-      (document.getElementById('file') as HTMLInputElement).value = '';
-    },
-    async submit() {    
-      const data = { title: this.title, file: this.file }
-      
-      console.log(this.file);
-
-      const res = await axios.post('v1/courses', data, {
-        headers: {
-        'Content-Type': 'multipart/form-data'
+    methods: {
+        onFileChange(e: Event) {
+            const files = (e.target as HTMLInputElement).files ||
+                (e as DragEvent).dataTransfer?.files;
+            if (!files?.length)
+                return;
+            this.file = files[0];
+        },
+        onClearFile() {
+            this.file = new File([], "");
+            (document.getElementById("file") as HTMLInputElement).value = "";
+        },
+        async onSubmit() {
+            const data = { title: this.title, file: this.file };
+            console.log(this.file);
+            const res = await axios.post("v1/courses", data, {
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                }
+            });
+            console.log(res);
         }
-      });
-      console.log(res);
     }
-  }
 })
 </script>
 
@@ -121,7 +119,7 @@ export default defineComponent({
                   </div>
                   <div v-if="file.name" class="flex items-center justify-center text-xs text-gray-500">
                     {{ file.name }}
-                    <button @click="clearFile">
+                    <button @click="onClearFile">
                       <svg class="stroke-2 h-4 w-4 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                       </svg>
@@ -141,7 +139,8 @@ export default defineComponent({
     <div class="pt-5">
       <div class="flex justify-end">
         <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
-        <button type="button" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" @click="submit">Submit</button>
+        <button type="button" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" @click="onSubmit">Submit</button>
+        <PrimaryButton label="Submit" :on-click="onSubmit" />
       </div>
     </div>
   </form>
