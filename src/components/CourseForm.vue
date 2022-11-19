@@ -1,11 +1,11 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
 import axios from 'axios';
-import PrimaryButton from './PrimaryButton.vue';
+import { defineComponent } from 'vue';
+import ButtonComponent from './ButtonComponent.vue';
 
 
 export default defineComponent({
-    components: { PrimaryButton },
+    components: { ButtonComponent },
     emits: ["submit"],
     data() {
         return {
@@ -30,7 +30,14 @@ export default defineComponent({
             (document.getElementById("file") as HTMLInputElement).value = "";
         },
         async onSubmit() {
-            const data = { title: this.title, file: this.file };
+            const data = { 
+              title: this.title,
+              description: this.description,
+              category: this.category,
+              level: this.level,
+              speciality: this.speciality,
+              ...(this.file.name && {file: this.file})
+            };
             console.log(this.file);
             const res = await axios.post("v1/courses", data, {
                 headers: {
@@ -138,9 +145,8 @@ export default defineComponent({
 
     <div class="pt-5">
       <div class="flex justify-end">
-        <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancel</button>
-        <button type="button" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" @click="onSubmit">Submit</button>
-        <PrimaryButton label="Submit" :on-click="onSubmit" />
+        <ButtonComponent emphasis="white" title="Cancel" />
+        <ButtonComponent emphasis="primary" extra-classes="ml-3" title="Submit" @on-click="onSubmit" />
       </div>
     </div>
   </form>
