@@ -22,7 +22,11 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'comma-dangle': ['error', 'only-multiline'],
     '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '_' }],
-		'@typescript-eslint/no-var-requires': 0,
+    '@typescript-eslint/no-var-requires': 0,
+    'quotes': ['error', 'single'],
+    'semi': ['error', 'always'],
+    'indent': ['error', 2],
+    'no-multi-spaces': ['error']
   },
   globals: {
     defineProps: 'readonly',
@@ -30,4 +34,4 @@ module.exports = {
     defineExpose: 'readonly',
     withDefaults: 'readonly',
   },
-}
+};

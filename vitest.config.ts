@@ -1,8 +1,8 @@
-import vue from '@vitejs/plugin-vue'
-import { resolve } from 'path'
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { defineConfig } from 'vitest/config'
+import vue from '@vitejs/plugin-vue';
+import { resolve } from 'path';
+import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [
@@ -36,4 +36,4 @@ export default defineConfig({
     environment: 'happy-dom',
     include: ['tests/unit/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
   },
-})
+});
