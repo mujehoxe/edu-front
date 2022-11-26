@@ -1,13 +1,13 @@
-import vue from '@vitejs/plugin-vue'
-import { resolve } from 'path'
-import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import { defineConfig } from 'vite'
-import { version as pkgVersion } from './package.json'
+import vue from '@vitejs/plugin-vue';
+import { resolve } from 'path';
+import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
+import { defineConfig } from 'vite';
+import { version as pkgVersion } from './package.json';
 
-process.env.VITE_APP_VERSION = pkgVersion
+process.env.VITE_APP_VERSION = pkgVersion;
 if (process.env.NODE_ENV === 'production') {
-  process.env.VITE_APP_BUILD_EPOCH = new Date().getTime().toString()
+  process.env.VITE_APP_BUILD_EPOCH = new Date().getTime().toString();
 }
 
 export default defineConfig({
@@ -40,10 +40,10 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/v1':{
+      '^/v1/.*':{
         target:  'http://localhost:3000',
         changeOrigin: true,
       },
     },
   },
-})
+});

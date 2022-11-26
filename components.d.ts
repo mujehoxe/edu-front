@@ -8,7 +8,8 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ButtonComponent: typeof import('./src/components/ButtonComponent.vue')['default']
-    CourseForm: typeof import('./src/components/CourseForm.vue')['default']
+    CourseCard: typeof import('./src/components/CourseCard.vue')['default']
+    DialogModal: typeof import('./src/components/DialogModal.vue')['default']
     PageHeader: typeof import('./src/components/PageHeader.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

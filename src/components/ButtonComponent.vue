@@ -1,6 +1,6 @@
 <script lang="ts">
 
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   props: {
@@ -11,11 +11,8 @@ export default defineComponent({
         'primary',
         'secondary',
         'white',
+        'danger',
       ].includes(prop),
-    },
-    extraClasses: {
-      type: String,
-      default: '',
     },
     title: {
       type: String,
@@ -25,10 +22,10 @@ export default defineComponent({
   emits: ['onClick'],
   methods: {
     click() {
-      this.$emit('onClick')
+      this.$emit('onClick');
     }
   }
-})
+});
 </script>
 
 
@@ -39,8 +36,8 @@ export default defineComponent({
     :class='[
       emphasis == "primary" ? "border-transparent shadow-sm text-white bg-indigo-600 hover:bg-indigo-700" : "",
       emphasis === "secondary" ? "border-transparent text-indigo-700 bg-indigo-100 hover:bg-indigo-200" : "",
+      emphasis === "danger" ? "border-transparent text-red-700 bg-red-100 hover:bg-indigo-200" : "",
       emphasis === "white" ? "border-gray-300 shadow-sm text-gray-700 bg-white hover:bg-gray-50" : "",
-      extraClasses,
     ]'
     @click="click">{{ title }}</button>
 </template>

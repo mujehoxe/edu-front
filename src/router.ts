@@ -1,20 +1,33 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 
-import IndexPage from '@/pages/IndexPage.vue'
+import IndexPage from '@/pages/IndexPage.vue';
+import CourseForm from './pages/CourseForm.vue';
 
 const routes = [
   {
     path: '/',
+    name: 'Home',
     component: IndexPage,
     meta: {
-      title: 'Vite + Vue + TypeScript + Tailwind Starter Template',
+      title: 'Edu',
     },
   },
-]
+  {
+    path: '/courses/create',
+    name: 'Create Course',
+    component: CourseForm,
+  },
+  {
+    path: '/courses/:id',
+    name: 'Update Course',
+    component: CourseForm,
+    props: true
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
-})
+});
 
-export default router
+export default router;
