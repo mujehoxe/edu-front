@@ -6,15 +6,8 @@ import { XMarkIcon, PhotoIcon } from '@heroicons/vue/24/outline';
 import DialogModal from '../components/DialogModal.vue';
 
 import router from '../router';
+import Course from '@/entities/Course';
 
-class CourseResponse {
-  title = '';
-  description = '';
-  category = '';
-  level = '';
-  speciality = '';
-  thumbnail: Record<string, unknown>;
-}
 
 class DialogInfromation{
   title = '';
@@ -37,7 +30,7 @@ export default defineComponent({
   emits: ['submit'],
   data() {
     return {
-      course: new CourseResponse(),
+      course: new Course(),
       file: new File([], ''),
       dialogInfromation: new DialogInfromation(),
     };
@@ -92,7 +85,6 @@ export default defineComponent({
     },
     async onDeleteConfirmed() {
       let res = await this.deleteCourseReq();
-      console.log(res);
       if(res.status === 200) {
         this.getModalInstance('dialogDeleteModal').closeModal();
         this.goHome();
@@ -158,9 +150,13 @@ export default defineComponent({
       this.getModalInstance('dialogModal').closeModal();
     },
     reinitComponent(){
-      this.course = new CourseResponse();
+      this.course = new Course();
       this.file = new File([], '');
       this.dialogInfromation = new DialogInfromation();
+    },
+    thumbnailGenerated(file: File){
+      this.file = file;
+      console.log(this.file);
     },
     isUpdate():boolean { return this.id ? true : false; }
   }
@@ -259,6 +255,10 @@ export default defineComponent({
                       <p class="text-xs text-gray-500">PNG, JPG, JPEG up to 10MB</p>
                     </div>
                   </div>
+                  <div class="mt-2 mx-auto max-w-sm overflow-hidden rounded-xl bg-white shadow-md duration-200 hover:scale-105 hover:shadow-xl">
+                    <PreviewImg v-if="course?.thumbnail" :thumbnail='course.thumbnail' :file='file' @img-generated='thumbnailGenerated($event)' />
+                    <PreviewImg v-else :title='course.title' :file='file' @img-generated='thumbnailGenerated($event)' />
+                  </div>
                 </div>
               </div>
 
@@ -268,7 +268,7 @@ export default defineComponent({
 
         <div class="pt-5">
           <div class="flex justify-end">
-            <ButtonComponent emphasis="white" title="Cancel" @on-click="$router.go(-1)" />
+            <ButtonComponent emphasis="white" title="Cancel" @on-click="goHome" />
             <ButtonComponent v-if="!isUpdate()" emphasis="primary" class="ml-3" title="Create" @on-click="onCreate" />
             <ButtonComponent v-if="isUpdate()" emphasis="danger" class="ml-3" title="Delete" @on-click="onDelete" />
             <ButtonComponent v-if="isUpdate()" emphasis="primary" class="ml-3" title="Update" @on-click="onUpdate" />

@@ -2,12 +2,13 @@
 import PageHeader from '../components/PageHeader.vue';
 import axios from 'axios';
 import router from '../router';
+import Course from '@/entities/Course';
 
 export default {
   components: { PageHeader },
   data() {
     return {
-      courses: Array<any>(),
+      courses: Array<Course>(),
     };
   },
   async mounted() {
@@ -30,7 +31,7 @@ export default {
   </div>
   <main class="m-5">
     <ul role="list" class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 sm:gap-x-6 md:grid-cols-3 lg:grid-cols-4 xl:gap-x-8">
-      <li v-for="course in courses" :key="course.id" class="mx-auto items-center relative w-full">
+      <li v-for="course in courses" :key="course.id" class="items-center relative w-full">
         <CourseCard :course="course" />
       </li>
     </ul>
