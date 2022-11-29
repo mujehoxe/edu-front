@@ -40,7 +40,11 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '^/v1/.*':{
+      '^/uploads/.*': {
+        target:  'http://localhost:3000',
+        changeOrigin: true,
+      },
+      '^/v.+/.*':{
         target:  'http://localhost:3000',
         changeOrigin: true,
       },
