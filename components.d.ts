@@ -10,6 +10,7 @@ declare module '@vue/runtime-core' {
     ButtonComponent: typeof import('./src/components/ButtonComponent.vue')['default']
     CourseCard: typeof import('./src/components/CourseCard.vue')['default']
     DialogModal: typeof import('./src/components/DialogModal.vue')['default']
+    PageFooter: typeof import('./src/components/PageFooter.vue')['default']
     PageHeader: typeof import('./src/components/PageHeader.vue')['default']
     PreviewImg: typeof import('./src/components/PreviewImg.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
