@@ -1,4 +1,4 @@
-const plugin = require('tailwindcss/plugin')
+const plugin = require('tailwindcss/plugin');
 // const defaultTheme = require('tailwindcss/defaultTheme')
 
 /** @type {import('tailwindcss').Config} */
@@ -22,13 +22,13 @@ module.exports = {
         const isFirefoxRule = postcss.atRule({
           name: '-moz-document',
           params: 'url-prefix()',
-        })
-        isFirefoxRule.append(container.nodes)
-        container.append(isFirefoxRule)
+        });
+        isFirefoxRule.append(container.nodes);
+        container.append(isFirefoxRule);
         isFirefoxRule.walkRules((rule) => {
-          rule.selector = `.${e(`firefox${separator}${rule.selector.slice(1)}`)}`
-        })
-      })
+          rule.selector = `.${e(`firefox${separator}${rule.selector.slice(1)}`)}`;
+        });
+      });
     }),
   ],
-}
+};
