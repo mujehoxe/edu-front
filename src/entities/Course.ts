@@ -1,4 +1,5 @@
 import Thumbnail from './Thumbnail';
+import Topic from './Topic';
 
 export default class Course {
   id: number;
@@ -8,5 +9,5 @@ export default class Course {
   level?: string;
   speciality?: string;
   thumbnail?: Thumbnail;
-  topics?: any;
+  topics?: Array<Topic>;
 }
