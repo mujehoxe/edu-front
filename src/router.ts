@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 import IndexPage from '@/pages/IndexPage.vue';
 import CourseForm from './pages/CourseForm.vue';
+import CourseDetails from './pages/CourseDetails.vue';
 
 const routes = [
   {
@@ -13,14 +14,20 @@ const routes = [
     },
   },
   {
-    path: '/courses/create',
+    path: '/course/create',
     name: 'Create Course',
     component: CourseForm,
   },
   {
-    path: '/courses/:id',
+    path: '/course/:id/update',
     name: 'Update Course',
     component: CourseForm,
+    props: true
+  },
+  {
+    path: '/course/:courseId',
+    name: 'Course Details',
+    component: CourseDetails,
     props: true
   },
 ];
