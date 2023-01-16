@@ -255,7 +255,7 @@ export default defineComponent({
                       <p class="text-xs text-gray-500">PNG, JPG, JPEG up to 10MB</p>
                     </div>
                   </div>
-                  <div class="mt-2 mx-auto max-w-sm overflow-hidden rounded-xl bg-white shadow-md duration-200 hover:scale-105 hover:shadow-xl">
+                  <div class="mt-2 max-w-sm overflow-hidden rounded-xl bg-white shadow-md duration-200 hover:scale-105 hover:shadow-xl">
                     <PreviewImg v-if="course?.thumbnail" :thumbnail='course.thumbnail' :file='file' @img-generated='thumbnailGenerated($event)' />
                     <PreviewImg v-else :title='course.title' :file='file' @img-generated='thumbnailGenerated($event)' />
                   </div>
