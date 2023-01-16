@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import IndexPage from '@/pages/IndexPage.vue';
 import CourseForm from './pages/CourseForm.vue';
 import CourseDetails from './pages/CourseDetails.vue';
+import TopicDetails from './pages/TopicDetails.vue';
 
 const routes = [
   {
@@ -28,6 +29,12 @@ const routes = [
     path: '/course/:courseId',
     name: 'Course Details',
     component: CourseDetails,
+    props: true
+  },
+  {
+    path: '/topic/:topicId',
+    name: 'Topic Details',
+    component: TopicDetails,
     props: true
   },
 ];
